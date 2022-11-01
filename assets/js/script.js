@@ -28,18 +28,25 @@ function gerarNovoLink() {
 
 //GERAR LINK
 function gerar() {
-    let boxForm = document.getElementById('box-form');
-    let boxResult = document.getElementById('box-result');
-    let resultado = document.getElementById('result');
-    let numero = document.getElementById('number').value;
-    let link = "https://api.whatsapp.com/send?phone=55";
-    let linkFinal = link + numero.replace(/\D/g, ''); //RETIRA OS CARACTERES DO NUMERO
+    const boxForm = document.getElementById('area1');
+    const boxResult = document.getElementById('area2');
+    const numero = document.getElementById('number').value;
+    const resultado = document.getElementById('result');
+    const link = "https://api.whatsapp.com/send?phone=55";
+    var linkFinal = link + numero.replace(/\D/g, ''); //RETIRA OS CARACTERES DO NUMERO
 
     if (numero == '') {
         alert("Digite um número!!!");
     } else {
-        boxForm.style.display = 'none';
-        boxResult.style.visibility = 'visible';
+        boxForm.classList.add('display');
+        boxResult.classList.remove('display');
         resultado.value = linkFinal;
     }
+
+    //BOTÃO ABRIR EM NOVA ABA
+    let btn = document.querySelector('#btn-abrir');
+    btn.addEventListener('click', function () {
+        return (window.open(linkFinal, '_blank'));
+    })
 }
+
